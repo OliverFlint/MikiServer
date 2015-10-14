@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  form(method="post", class="form-horizontal")
+    div(class="row")
+      div(class="col-md-8")
+        |&nbsp;
+      div(class="col-md-4")
+        div(class="form-group")
+          button(type='reset', onclick='history.back();', class='btn btn-default') Cancel
+          |&nbsp;
+          button(type='submit', class='btn btn-primary') Save
+    div(class="row")
+      div(class="col-md-10")
+        div(class="form-group")
+          label(for="name", class="col-md-2 control-label") Name:
+          div(class="col-md-8")
+            input(type="text", id="name", name="name", class="form-control", value="#{url}")
+        div(class="form-group")
+          label(for="mdtextbox", class="control-label") Markdown:
+          textarea(id="mdtextbox", name="mdtextbox", class="form-control", rows="20") !{markdown}
