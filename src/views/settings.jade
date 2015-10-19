@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  form#settings(method='post')
+    div.form-group
+      lable(for='title') Title:
+      input#title(name='title', value='#{sitetitle}')
+    div.form-group
+      lable(for='theme') Theme:
+      select#theme(name='theme')
+        each val in themes
+          option(value=val)= val
+    button#submit.btn.btn-primary(type='submit', name='submit', value='submit') Save

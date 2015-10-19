@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/theme/#{theme}/style.css')
+  body
+    div.container
+      div.row
+        div.col-md-12.heading
+          p #{title}
+      div.row
+        div.col-md-12
+          block content
