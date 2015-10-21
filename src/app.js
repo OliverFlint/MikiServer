@@ -10,6 +10,7 @@ var routes = require('./routes/index');
 var settings = require('./routes/settings');
 var login = require('./routes/login');
 var admin = require('./routes/admin');
+var edit = require('./routes/edit');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use('/', routes);
 app.use('/settings', settings);
 app.use('/login', login);
 app.use('/admin', admin);
+app.use('/edit', edit);
 
 // Load settings...
 global.settingsFile = path.join(__dirname, 'settings.json');
@@ -70,7 +72,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
-    error: { "path": err.path },
+    error: { "path": err.path, "status": err.status },
     theme: global.settings.theme,
     title: global.settings.title
   });

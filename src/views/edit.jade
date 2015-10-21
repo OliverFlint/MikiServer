@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  form#navigation.form-horizontal(method='post', action='#{url}')
+    div.form-group
+      div.col-md-12
+        textarea#markdown.form-control(rows='20', name='markdown') #{markdown}
+    div.form-group
+      div.col-md-10
+        input#filepath(type='hidden', name='filepath', value='#{filepath}')
+      div.col-md-1
+        button#submit.btn.btn-primary(type='submit', name='submit', value='submit') Save
+      div.col-md-1
+        a#cancel.btn.btn-default(href='/') Cancel

@@ -1,5 +1,7 @@
 extends layout
 
 block content
+  div.text-right
+    a.btn.btn-default.btn-xs(href='/edit/#{url}/edit') Edit
   div#md_container
     | !{markdown}

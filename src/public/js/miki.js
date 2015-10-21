@@ -25,3 +25,9 @@ $(document).ready(function(){
     dg.drawSVG(element);
   });
 });
+
+// tabs
+$('ul.nav-tabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
