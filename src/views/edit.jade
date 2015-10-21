@@ -3,8 +3,16 @@ extends layout
 block content
   form#navigation.form-horizontal(method='post', action='#{url}')
     div.form-group
-      div.col-md-12
-        textarea#markdown.form-control(rows='20', name='markdown') #{markdown}
+    div
+      div.col-md-6
+        h3 Editor:
+      div.col-md-6
+        h3 Preview:
+      div#editor
+        div.col-md-6
+          textarea#markdown.form-control(rows='15', name='markdown', v-model='input', debounce='300') #{markdown}
+        div.col-md-6
+          div#md_container(v-html='input | marked')
     div.form-group
       div.col-md-10
         input#filepath(type='hidden', name='filepath', value='#{filepath}')
@@ -12,3 +20,4 @@ block content
         button#submit.btn.btn-primary(type='submit', name='submit', value='submit') Save
       div.col-md-1
         a#cancel.btn.btn-default(href='/') Cancel
+  script(src='/js/marked.js')

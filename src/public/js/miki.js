@@ -24,10 +24,17 @@ $(document).ready(function(){
     var dg = flowchart.parse(uml);
     dg.drawSVG(element);
   });
-});
 
-// tabs
-$('ul.nav-tabs a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
+  // tabs
+  $('ul.nav-tabs a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })
+
+  // editor
+  $('#editor textarea').keyup(function(){
+    $('#md_container').html(marked(this.value));
+    $('#md_container table').addClass('table table-bordered table-hover');
+  });
+  $('#editor textarea').trigger('keyup');
+});
