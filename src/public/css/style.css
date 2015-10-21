@@ -1,1 +1,16 @@
-body { padding-top: 70px; }
+body { padding-top: 70px; padding-bottom: 70px; }
+
+.plantuml { max-width:100%; }
+
+#md_container img {
+  max-width: 300px;
+  -webkit-transition: all 1s ease; /* Safari and Chrome */
+  -moz-transition: all 1s ease; /* Firefox */
+  -o-transition: all 1s ease; /* IE 9 */
+  -ms-transition: all 1s ease; /* Opera */
+  transition: all 1s ease;
+}
+
+#md_container img:hover {
+    max-width: 100%;
+}
