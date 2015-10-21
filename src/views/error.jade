@@ -2,12 +2,14 @@ extends layout
 
 block content
   div.container
-    if error.path.indexOf('.md')
-      p The markdown file doesn't exist. Would you like to create it?
-      form#CreateMD.form(method='post' action='/admin/createfile')
-        input#path(type='hidden' name='path' value='#{error.path}')
-        input#url(type='hidden' name='url' value='#{url}')
-        button#create.btn.btn-primary Create It
+    if error
+      if error.path
+        if error.path.indexOf('.md')
+          p The markdown file doesn't exist. Would you like to create it?
+          form#CreateMD.form(method='post' action='/admin/createfile')
+            input#path(type='hidden' name='path' value='#{error.path}')
+            input#url(type='hidden' name='url' value='#{url}')
+            button#create.btn.btn-primary Create It
 
   div.container
     h1= message
