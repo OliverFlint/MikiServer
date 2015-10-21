@@ -8,6 +8,7 @@ var fs = require('fs');
 
 var routes = require('./routes/index');
 var settings = require('./routes/settings');
+var login = require('./routes/login');
 
 var app = express();
 
@@ -25,12 +26,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/settings', settings);
+app.use('/login', login);
 
 // Load settings...
-var settingsString = fs.readFileSync(path.join(__dirname, 'settings.js'))
+global.settingsFile = path.join(__dirname, 'settings.json');
+var settingsString = fs.readFileSync(settingsFile);
 global.settings = JSON.parse(settingsString);
 
+global.navFile = path.join(__dirname, 'content\\nav.md');
 global.contentFolder = path.join(__dirname, 'content');
+
+global.themes = fs.readdirSync(path.join(__dirname, 'public\\theme'))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -48,7 +54,9 @@ if (app.get('env') === 'development') {
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
-      error: err
+      error: err,
+      theme: global.settings.theme,
+      title: global.settings.title
     });
   });
 }
@@ -59,9 +67,32 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
-    error: {}
+    error: {},
+    theme: global.settings.theme,
+    title: global.settings.title
   });
 });
 
+//Passport Authentication
+var passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy;
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 module.exports = app;

@@ -2,12 +2,33 @@ doctype html
 html
   head
     title= title
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
     link(rel='stylesheet', href='/theme/#{theme}/style.css')
+    link(rel='stylesheet', href='/css/style.css')
   body
     div.container
       div.row
-        div.col-md-12.heading
-          p #{title}
+        nav.navbar.navbar-default.navbar-fixed-top
+          div.container
+            div.navbar-header
+              a.navbar-brand(href='/') #{title}
+            div.collapse.navbar-collapse
+              |!{navHtml}
       div.row
         div.col-md-12
           block content
+      div#footer.row
+          nav.navbar.navbar-default.navbar-fixed-bottom
+            div.container
+              div.collapse.navbar-collapse
+                ul
+                  li
+                    a(href='/settings') Settings
+                ul.nav.navbar-nav.navbar-right
+                  li
+                    a(href='/credits.md') Credits
+                  li
+                    a(href='http://oliverflint.github.io/') Crafted by Oliver Flnt
+    script(src='/js/jquery-2.1.4.min.js')
+    script(src='/js/bootstrap.min.js')
+    script(src='/js/miki.js')

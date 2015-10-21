@@ -8,13 +8,21 @@ var path = require('path');
 router.get('/', function(req, res, next) {
   var filecontents = fs.readFileSync(path.join(contentFolder, req.url.replace(/%20/g, ' '), 'index.md'), 'utf8');
   var md = marked(filecontents);
-  res.render('index', { title: settings.title, theme: settings.theme, markdown: md });
+
+  var navmd = fs.readFileSync(navFile, 'utf8');
+  var navHtml = marked(navmd);
+
+  res.render('index', { title: settings.title, theme: settings.theme, markdown: md, navHtml: navHtml });
 });
 
 router.get('/*.md', function(req, res, next) {
   var filecontents = fs.readFileSync(path.join(contentFolder, req.url.replace(/%20/g, ' ')), 'utf8');
   var md = marked(filecontents);
-  res.render('index', { title: settings.title, theme: settings.theme, markdown: md });
+
+  var navmd = fs.readFileSync(navFile, 'utf8');
+  var navHtml = marked(navmd);
+
+  res.render('index', { title: settings.title, theme: settings.theme, markdown: md, navHtml: navHtml });
 });
 
 module.exports = router;
