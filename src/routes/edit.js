@@ -5,7 +5,7 @@ var path = require('path');
 
 /* GET home page. */
 router.get('/*.md/edit', function(req, res, next) {
-  var filepath = path.join(contentFolder, req.url.replace(/%20/g, ' ').replace('/edit', ''));
+  var filepath = path.join(settings.contentFolder, req.url.replace(/%20/g, ' ').replace('/edit', ''));
   var md = null;
   try {
     var filecontents = fs.readFileSync(filepath, 'utf8');

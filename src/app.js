@@ -36,9 +36,13 @@ app.use('/edit', edit);
 global.settingsFile = path.join(__dirname, 'settings.json');
 var settingsString = fs.readFileSync(settingsFile);
 global.settings = JSON.parse(settingsString);
+if(!global.settings.contentFolder){
+  global.settings.contentFolder = path.join(__dirname, 'content');
+}
+console.log(JSON.stringify(global.settings));
 
 global.navFile = path.join(__dirname, 'content\\nav.md');
-global.contentFolder = path.join(__dirname, 'content');
+//global.contentFolder = path.join(__dirname, 'content');
 
 global.themes = fs.readdirSync(path.join(__dirname, 'public\\theme'))
 

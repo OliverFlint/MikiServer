@@ -31,6 +31,10 @@ block content
               option(value='0', selected=securityNo) No
               option(value='1', selected=securityYes) Yes
         div.form-group
+          label.control-label.col-md-2(for='contentFolder') Title:
+          div.col-md-10
+            input#contentFolder.form-control(name='contentFolder', value='#{settings.contentFolder}')
+        div.form-group
           div.col-md-10
           div.col-md-1
             button#submit.btn.btn-primary(type='submit', name='submit', value='submit') Save
