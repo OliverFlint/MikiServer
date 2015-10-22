@@ -41,6 +41,8 @@ if(!global.settings.contentFolder){
 }
 console.log(JSON.stringify(global.settings));
 
+global.ceditsFile = path.join(__dirname, 'content\\credits.md');
+
 global.navFile = path.join(__dirname, 'content\\nav.md');
 //global.contentFolder = path.join(__dirname, 'content');
 
