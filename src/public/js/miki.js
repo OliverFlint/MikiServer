@@ -37,4 +37,5 @@ $(document).ready(function(){
     $('#md_container table').addClass('table table-bordered table-hover');
   });
   $('#editor textarea').trigger('keyup');
+  $('#editor textarea').css({ height: $('#navigation').innerHeight() });
 });
