@@ -11,6 +11,7 @@ var settings = require('./routes/settings');
 var login = require('./routes/login');
 var admin = require('./routes/admin');
 var edit = require('./routes/edit');
+var files = require('./routes/files');
 
 var app = express();
 
@@ -31,6 +32,7 @@ app.use('/settings', settings);
 app.use('/login', login);
 app.use('/admin', admin);
 app.use('/edit', edit);
+app.use('/files', files);
 
 // Load settings...
 global.settingsFile = path.join(__dirname, 'settings.json');
@@ -44,7 +46,7 @@ console.log(JSON.stringify(global.settings));
 global.ceditsFile = path.join(__dirname, 'content\\credits.md');
 
 global.navFile = path.join(__dirname, 'content\\nav.md');
-//global.contentFolder = path.join(__dirname, 'content');
+global.filesDir = path.join(__dirname, 'public', '_files');
 
 global.themes = fs.readdirSync(path.join(__dirname, 'public\\theme'))
 

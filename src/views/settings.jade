@@ -9,8 +9,14 @@ block content
 
   div.tab-content
     div.tab-pane.active.fade.in(role='tabpanel', id='general')
-      p Modiy the general settings below:
+      p
       form#settings.form-horizontal(method='post', action='/settings/general')
+        div.form-group
+          div.col-md-10
+            p Modiy the general settings below:
+          div.col-md-2.btn.btn-group
+            button#submit.btn.btn-primary(type='submit', name='submit', value='submit') Save
+            a#cancel.btn.btn-default(href='/') Cancel
         div.form-group
           label.control-label.col-md-2(for='title') Title:
           div.col-md-10
@@ -34,22 +40,17 @@ block content
           label.control-label.col-md-2(for='contentFolder') Title:
           div.col-md-10
             input#contentFolder.form-control(name='contentFolder', value='#{settings.contentFolder}')
-        div.form-group
-          div.col-md-10
-          div.col-md-1
-            button#submit.btn.btn-primary(type='submit', name='submit', value='submit') Save
-          div.col-md-1
-            a#cancel.btn.btn-default(href='/') Cancel
+
     div.tab-pane.fade(role='tabpanel', id='navigation')
+      p
       form#navigation.form-horizontal(method='post', action='/settings/navigation')
-        p Edit the top navigation bar below:
-        p Note: un-ordered list markdown only!
+      div.form-group
+        div.col-md-10
+          p Edit the top navigation bar below:
+          p Note: un-ordered list markdown only!
+        div.col-md-2.btn.btn-group
+          button#submit.btn.btn-primary(type='submit', name='submit', value='submit') Save
+          a#cancel.btn.btn-default(href='/') Cancel
         div.form-group
           div.col-md-12
             textarea#navmarkdown.form-control(rows='20', name='navmarkdown') #{navmarkdown}
-        div.form-group
-          div.col-md-10
-          div.col-md-1
-            button#submit.btn.btn-primary(type='submit', name='submit', value='submit') Save
-          div.col-md-1
-            a#cancel.btn.btn-default(href='/') Cancel

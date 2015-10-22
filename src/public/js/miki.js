@@ -38,4 +38,14 @@ $(document).ready(function(){
   });
   $('#editor textarea').trigger('keyup');
   $('#editor textarea').css({ height: $('#navigation').innerHeight() });
+
+  // open images in new window
+  $('#md_container img').click(function() {
+    window.open(this.src);
+  });
+
+  // img errors
+  $('img').on("error", function () {
+    $(this).attr('src', '');
+  })
 });

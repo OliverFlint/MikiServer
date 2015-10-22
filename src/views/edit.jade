@@ -8,22 +8,21 @@ block content
       a(href='#preview') Preview
 
   div.tab-content
-    div.tab-pane.active.fade.in(role='tabpanel', id='editor')
+    div#editor.tab-pane.active.fade.in(role='tabpanel')
       p
       form#navigation.form-horizontal(method='post', action='#{url}')
         div.form-group
-          div#editor
-            textarea#markdown.form-control(rows='15', name='markdown', v-model='input', debounce='300') #{markdown}
-        div.form-group
-          div.col-md-10
+          div.col-sm-10
             input#filepath(type='hidden', name='filepath', value='#{filepath}')
-          div.col-md-1
+          div.col-sm-2.btn.btn-group
             button#submit.btn.btn-primary(type='submit', name='submit', value='submit') Save
-          div.col-md-1
             a#cancel.btn.btn-default(href='/') Cancel
+        div.form-group
+          div#editor
+            textarea#markdown.form-control(rows='15', name='markdown') #{markdown}
 
-    div.tab-pane.fade(role='tabpanel', id='preview')
+    div#preview.tab-pane.fade(role='tabpanel')
       p
-      div#md_container(v-html='input | marked')
+      div#md_container
 
   script(src='/js/marked.js')

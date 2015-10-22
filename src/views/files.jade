@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  ul.nav.nav-tabs(role='tablist')
+    li.active(role='presentation')
+      a(href='#files') Files
+    li(role='presentation')
+      a(href='#upload') Upload
+
+  div.tab-content
+    div.tab-pane.active.fade.in(role='tabpanel', id='files')
+      p
+      form#settings.form-horizontal(method='post', action='/files/delete')
+        table.table.table-hover
+          thead
+            th
+            th Filename
+            th Action
+          tbody
+            each file in files
+              tr
+                th
+                  img(src='/_files/#{file}', width='50px')
+                td=file
+                td
+                  button.btn.btn-danger.btn-xs(type='submit', id='delete_#{file}', name='delete_#{file}', value=file) Delete
+                  a.btn.btn-info.btn-xs(id='view_#{file}', name='view_#{file}', href='javascript:window.open("/_files/#{file}");') View
+
+    div.tab-pane.fade(role='tabpanel', id='upload')
+      p
+      form#navigation.form-horizontal(method='post', action='/files/upload')
